@@ -1,0 +1,45 @@
+{
+  "name": "token-ai-ecosystem",
+  "version": "0.1.0",
+  "description": "A comprehensive ecosystem and token-based AI self-building platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run serve",
+    "serve": "node server.js",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js,.ts",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\""
+  },
+  "keywords": [
+    "AI",
+    "Token",
+    "Ecosystem",
+    "Autonomous",
+    "Self-Building"
+  ],
+  "author": "Lushkah",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "redis": "^4.6.12",
+    "web3": "^4.4.0",
+    "ethers": "^6.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

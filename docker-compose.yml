@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: token_ai_postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-tokenai}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-tokenai}
+      POSTGRES_DB: ${DB_NAME:-token_ai_ecosystem}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-tokenai}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: token_ai_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  platform:
+    build: .
+    container_name: token_ai_platform
+    environment:
+      DATABASE_URL: postgresql://${DB_USER:-tokenai}:${DB_PASSWORD:-tokenai}@postgres:5432/${DB_NAME:-token_ai_ecosystem}
+      REDIS_URL: redis://redis:6379/0
+      PLATFORM_ENV: ${PLATFORM_ENV:-development}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - logs:/app/logs
+    command: python main.py
+
+volumes:
+  postgres_data:
+  redis_data:
+  logs:
