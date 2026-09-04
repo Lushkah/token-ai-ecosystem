@@ -1,1 +1,23 @@
-{"name":"lushka-token-ai-ecosystem","version":"0.1.0","private":true,"type":"module","scripts":{"dev":"tsx src/server.ts","start":"node dist/server.js","build":"tsc"},"dependencies":{"dotenv":"^16.4.5","express":"^5.1.0"},"devDependencies":{"@types/express":"^5.0.3","@types/node":"^22.15.0","tsx":"^4.19.4","typescript":"^5.8.3"}}
+{
+  "name": "lushka-token-ai-ecosystem",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.15.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
